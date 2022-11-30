@@ -5,6 +5,7 @@ TODO:
 FIXME:
 
 > jwt needs to be refreshed?
+> jwt is lost on browser reload
 
 IMPROVE:
 

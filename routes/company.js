@@ -35,6 +35,8 @@ router.post("/new-company", verify, async (req, res) => {
   const companyExists = await Company.findOne({ ico: req.body.ico });
   if (companyExists) return res.status(400).send(`company already exists`);
 
+  const currentUser = req.user._id;
+
   const company = new Company({
     businessName: req.body.businessName,
     street: req.body.street,
@@ -53,6 +55,7 @@ router.post("/new-company", verify, async (req, res) => {
     invoiceNote: req.body.invoiceNote,
     invoiceSignature: req.body.invoiceSignature,
     createdAt: Date.now(),
+    user: currentUser,
   });
 
   try {
@@ -74,7 +77,7 @@ router.post("/new-company", verify, async (req, res) => {
  */
 router.get("/all-companies", verify, async (req, res) => {
   try {
-    const result = await Company.find().exec();
+    const result = await Company.find().populate("user").exec();
     res.send(result);
   } catch (error) {
     res.status(500).send(error);

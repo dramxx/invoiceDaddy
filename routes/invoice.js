@@ -4,6 +4,7 @@ const Company = require("../models/Company");
 const Customer = require("../models/Customer");
 const verify = require("./auth/authVerify");
 const Joi = require("joi");
+const mongoose = require("mongoose");
 
 /**
  * Validation of user inputs
@@ -66,8 +67,16 @@ router.post("/new-invoice", verify, async (req, res) => {
  */
 router.get("/all-invoices", verify, async (req, res) => {
   try {
-    const result = await Invoice.find().exec();
-    res.send(result);
+    const result = await Invoice.find()
+      .populate("company")
+      .populate("customer")
+      .exec();
+
+    const invoicesForUserCompanies = result.filter(
+      (invoice) => invoice.company.user == req.user._id
+    );
+
+    res.send(invoicesForUserCompanies);
   } catch (error) {
     res.status(500).send(error);
   }

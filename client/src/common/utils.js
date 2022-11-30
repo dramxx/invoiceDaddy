@@ -24,8 +24,6 @@ export const httpGetData = (url) => {
     Accept: "application/json",
   };
 
-  console.log("httpGetData");
-
   return axios.get(url, { headers: header });
 };
 
@@ -36,8 +34,6 @@ export const httpPostData = (url, data) => {
     "content-type": "application/json",
     Accept: "application/json",
   };
-
-  console.log("httpPostData");
 
   return axios.post(url, data, { headers: header });
 };
