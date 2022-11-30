@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { serverRoutes } from "../common/configs";
-import { httpPostData } from "../common/utils";
+import { httpPostData, httpGetData } from "../common/utils";
 
 const Landing = () => {
   const fetchAllInvoices = () =>
@@ -11,7 +11,7 @@ const Landing = () => {
 
   const postNewInvoice = () =>
     httpPostData(serverRoutes.newInvoice, {
-      invoiceNumber: "0001",
+      invoiceNumber: "0005",
       service: "Im invoicing this, daddy",
       rate: "30",
       quantity: "200",
