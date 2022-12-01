@@ -4,8 +4,12 @@ TODO:
 
 FIXME:
 
-- jwt needs to be refreshed?
+- jwt refresh token
 - jwt is lost on browser reload
+- when token expires, user is not logged off
+
+INVESTIGATE:
+
 - random logouts
 
 IMPROVE:
