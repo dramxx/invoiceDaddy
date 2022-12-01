@@ -4,7 +4,6 @@ const Company = require("../models/Company");
 const Customer = require("../models/Customer");
 const verify = require("./auth/authVerify");
 const Joi = require("joi");
-const mongoose = require("mongoose");
 
 /**
  * Validation of user inputs
@@ -15,7 +14,7 @@ const invoiceSchema = Joi.object({
   rate: Joi.string().min(1).max(16).required(),
   quantity: Joi.string().min(1).max(16).required(),
   totalPrice: Joi.string().min(1).max(16).required(),
-  issuedAt: Joi.number().required(),
+  deliveryDate: Joi.number().required(),
   payByDate: Joi.number().required(),
   company: Joi.string().max(32).required(),
   customer: Joi.string().max(32).required(),
@@ -42,7 +41,7 @@ router.post("/new-invoice", verify, async (req, res) => {
     quantity: req.body.quantity,
     totalPrice: req.body.totalPrice,
     createdAt: Date.now(),
-    issuedAt: req.body.issuedAt,
+    deliveryDate: req.body.deliveryDate,
     payByDate: req.body.payByDate,
     company: currentCompany,
     customer: currentCustomer,
