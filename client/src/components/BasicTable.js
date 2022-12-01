@@ -25,7 +25,7 @@ const BasicTable = ({
   handleDelete,
 }) => {
   const getIdKey = () => {
-    return dataAccessor.filter((item) => item.isId);
+    return dataAccessor.filter((item) => item.isId)[0].key;
   };
 
   const handleSpecialCases = (item) => {
@@ -76,7 +76,7 @@ const BasicTable = ({
           <IconButton
             aria-label="download"
             color="primary"
-            id={row[getIdKey()]}
+            id={row[getIdKey(row)]}
             onClick={(e) => handleDownload(e.currentTarget.id)}
           >
             <DownloadIcon disabled />
@@ -87,7 +87,7 @@ const BasicTable = ({
           <IconButton
             aria-label="edit"
             color="primary"
-            id={row[getIdKey()]}
+            id={row[getIdKey(row)]}
             onClick={(e) => handleOpen(e.currentTarget.id)}
           >
             <EditIcon />
@@ -98,7 +98,7 @@ const BasicTable = ({
           <IconButton
             aria-label="delete"
             color="primary"
-            id={row[getIdKey()]}
+            id={row[getIdKey(row)]}
             onClick={(e) => handleDelete(e.currentTarget.id)}
           >
             <DeleteForeverIcon />

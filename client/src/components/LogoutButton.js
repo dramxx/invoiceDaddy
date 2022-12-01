@@ -5,14 +5,14 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import { useAuth } from "../auth/ProvideAuth";
-import { routes } from "../common/configs";
+import { ROUTES } from "../common/configs";
 
 const LogoutButton = () => {
   let history = useHistory();
   let auth = useAuth();
 
   const handleLogout = () => {
-    auth.signout(() => history.push(routes.home));
+    auth.signout(() => history.push(ROUTES.home));
   };
 
   return (

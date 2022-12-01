@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route, Redirect } from "react-router-dom";
-import { routes } from "../common/configs";
+import { ROUTES } from "../common/configs";
 
 import { useAuth } from "./ProvideAuth";
 
@@ -17,7 +17,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: routes.unauthorized,
+              pathname: ROUTES.unauthorized,
               state: { from: location },
             }}
           />

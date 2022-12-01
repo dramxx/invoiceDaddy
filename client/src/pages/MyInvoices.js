@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import { pathOr } from "ramda";
 
+import { httpGetData } from "../common/utils";
+import { API_ROUTES } from "../common/configs";
+
 import AddNewButton from "../components/AddNewButton";
 import BasicTable from "../components/BasicTable";
 
-import { httpGetData } from "../common/utils";
-import { serverRoutes } from "../common/configs";
-
 const MyInvoices = () => {
   const [invoiceData, setInvoiceData] = useState(null);
-
-  console.log(invoiceData);
 
   const tableHeader = [
     "Invoice nr",
@@ -57,7 +55,7 @@ const MyInvoices = () => {
   ];
 
   useEffect(() => {
-    httpGetData(serverRoutes.allInvoices)
+    httpGetData(API_ROUTES.allInvoices)
       .then((response) => setInvoiceData(pathOr([], ["data"], response)))
       .catch((error) => console.error(error));
   }, []);

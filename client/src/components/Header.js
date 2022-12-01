@@ -11,7 +11,7 @@ import AutoAwesome from "@mui/icons-material/AutoAwesome";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 
-import { routes } from "../common/configs";
+import { ROUTES } from "../common/configs";
 
 const linkStyles = {
   textDecoration: "none",
@@ -24,7 +24,7 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Box>
-            <Link to={routes.home} style={linkStyles}>
+            <Link to={ROUTES.home} style={linkStyles}>
               <IconButton
                 size="large"
                 edge="start"
@@ -43,7 +43,7 @@ const Header = () => {
               </IconButton>
             </Link>
 
-            <Link to={routes.myInvoices} style={linkStyles}>
+            <Link to={ROUTES.myInvoices} style={linkStyles}>
               <IconButton size="small" color="inherit" aria-label="menu">
                 <Typography variant="h8" style={{ marginRight: "20px" }}>
                   My Invoices
@@ -51,7 +51,7 @@ const Header = () => {
               </IconButton>
             </Link>
 
-            <Link to={routes.myCompanies} style={linkStyles}>
+            <Link to={ROUTES.myCompanies} style={linkStyles}>
               <IconButton size="small" color="inherit" aria-label="menu">
                 <Typography variant="h8" style={{ marginRight: "20px" }}>
                   My Companies
@@ -59,7 +59,7 @@ const Header = () => {
               </IconButton>
             </Link>
 
-            <Link to={routes.myClients} style={linkStyles}>
+            <Link to={ROUTES.myClients} style={linkStyles}>
               <IconButton size="small" color="inherit" aria-label="menu">
                 <Typography variant="h8" style={{ marginRight: "20px" }}>
                   My Clients

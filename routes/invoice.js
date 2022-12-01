@@ -62,7 +62,7 @@ router.post("/new-invoice", verify, async (req, res) => {
 });
 
 /**
- * Get all Invoices
+ * Get all Invoices for current user
  */
 router.get("/all-invoices", verify, async (req, res) => {
   try {
@@ -72,7 +72,7 @@ router.get("/all-invoices", verify, async (req, res) => {
       .exec();
 
     const invoicesForUserCompanies = result.filter(
-      (invoice) => invoice.company.user == req.user._id
+      (invoice) => invoice.company.user.toString() == req.user._id
     );
 
     res.send(invoicesForUserCompanies);

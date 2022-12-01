@@ -15,29 +15,29 @@ import MyClients from "./pages/MyClients";
 import Unauthorized from "./pages/Unauthorized";
 import PrivateRoute from "./auth/PrivateRoute";
 import { ProvideAuth } from "./auth/ProvideAuth";
-import { routes } from "./common/configs";
+import { ROUTES } from "./common/configs";
 
 const App = () => {
   return (
     <ProvideAuth>
       <Router>
-        <Redirect from="/" to={routes.home} />
+        <Redirect from="/" to={ROUTES.home} />
 
         <Layout>
           <Switch>
-            <Route path={routes.home}>
+            <Route path={ROUTES.home}>
               <Landing />
             </Route>
-            <PrivateRoute path={routes.myInvoices}>
+            <PrivateRoute path={ROUTES.myInvoices}>
               <MyInvoices />
             </PrivateRoute>
-            <PrivateRoute path={routes.myCompanies}>
+            <PrivateRoute path={ROUTES.myCompanies}>
               <MyCompanies />
             </PrivateRoute>
-            <PrivateRoute path={routes.myClients}>
+            <PrivateRoute path={ROUTES.myClients}>
               <MyClients />
             </PrivateRoute>
-            <Route path={routes.unauthorized}>
+            <Route path={ROUTES.unauthorized}>
               <Unauthorized />
             </Route>
           </Switch>

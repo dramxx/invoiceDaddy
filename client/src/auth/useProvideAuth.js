@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import { serverRoutes } from "../common/configs";
+import { API_ROUTES } from "../common/configs";
 import { saveJwt, removeJwt } from "../common/utils";
 import { manageAuth } from "./manageAuth";
 
@@ -11,7 +11,7 @@ export const useProvideAuth = () => {
   const signin = (cb, user) => {
     return manageAuth.signin(() => {
       axios
-        .post(serverRoutes.login, user)
+        .post(API_ROUTES.login, user)
         .then((response) => {
           if (!response.data) return console.error(response);
 

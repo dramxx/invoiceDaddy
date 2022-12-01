@@ -73,12 +73,17 @@ router.post("/new-company", verify, async (req, res) => {
 });
 
 /**
- * Get all companies
+ * Get all companies for current user
  */
 router.get("/all-companies", verify, async (req, res) => {
   try {
     const result = await Company.find().populate("user").exec();
-    res.send(result);
+
+    const companiesForUser = result.filter(
+      (company) => company.user._id.toString() == req.user._id
+    );
+
+    res.send(companiesForUser);
   } catch (error) {
     res.status(500).send(error);
   }

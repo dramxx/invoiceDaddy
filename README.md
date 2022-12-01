@@ -11,6 +11,7 @@ FIXME:
 INVESTIGATE:
 
 - random logouts
+- adding new invoice causes crash
 
 IMPROVE:
 

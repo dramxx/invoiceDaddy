@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import { useAuth } from "../auth/ProvideAuth";
-import { routes } from "../common/configs";
+import { ROUTES } from "../common/configs";
 
 const LoginButton = () => {
   let history = useHistory();
@@ -17,7 +17,7 @@ const LoginButton = () => {
     password: "123456abc",
   };
 
-  let { from } = location.state || { from: { pathname: routes.home } };
+  let { from } = location.state || { from: { pathname: ROUTES.home } };
 
   const handleLogin = () => {
     auth.signin(() => {
