@@ -28,6 +28,8 @@ router.post("/new-customer", verify, async (req, res) => {
   const customerExists = await Customer.findOne({ ico: req.body.ico });
   if (customerExists) return res.status(400).send(`customer already exists`);
 
+  const currentUser = req.user._id;
+
   const customer = new Customer({
     businessName: req.body.businessName,
     street: req.body.street,
@@ -39,6 +41,7 @@ router.post("/new-customer", verify, async (req, res) => {
     icdph: req.body.icdph,
     additionalDetails: req.body.additionalDetails,
     createdAt: Date.now(),
+    // user: currentUser,
   });
 
   try {
@@ -56,12 +59,14 @@ router.post("/new-customer", verify, async (req, res) => {
 });
 
 /**
- * Get all customers
+ * Get all customers for current user
  */
 router.get("/all-customers", verify, async (req, res) => {
+  const currentUser = req.user._id;
+
   try {
-    const result = await Customer.find().exec();
-    res.send(result);
+    const allCustomers = await Customer.find({ user: currentUser });
+    res.status(200).send(allCustomers);
   } catch (error) {
     res.status(500).send(error);
   }

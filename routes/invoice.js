@@ -68,6 +68,11 @@ router.get("/all-invoices", verify, async (req, res) => {
   try {
     const result = await Invoice.find()
       .populate("company")
+      //TODO: TESTME:
+      // .populate({
+      //   path: "company",
+      //   match: { user: { _id: req.user._id } },
+      // })
       .populate("customer")
       .exec();
 

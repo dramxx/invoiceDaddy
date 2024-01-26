@@ -20,6 +20,14 @@ const loginSchema = Joi.object({
 });
 
 /**
+ * get all registered users
+ */
+router.get("/all-registered", async (req, res) => {
+  const users = await User.find();
+  res.send(users);
+});
+
+/**
  * Signup user
  *
  * Checks, if user already exists
@@ -70,6 +78,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const { error } = await loginSchema.validateAsync(req.body);
+
     if (error) {
       res.status(400).send(error.details[0].message);
     } else {
@@ -85,6 +94,12 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
+});
+
+//* return all registered users */
+router.get("/all-registered", async (req, res) => {
+  const users = await User.find();
+  res.send(users);
 });
 
 module.exports = router;
